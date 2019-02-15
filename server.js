@@ -25,5 +25,7 @@ app.set('view engine', 'hbs')
 app.use('/users', require('./routes/users'))
 app.use('/', express.static(path.join(__dirname, 'public')))
 
-app.listen(2626, () =>
-    console.log("Server started on http://localhost:2626"))
+// app.listen(2626, () =>
+//     console.log("Server started on http://localhost:2626"))
+
+app.listen(config.PORT, () => console.log("Server listening to "+ config.PORT))

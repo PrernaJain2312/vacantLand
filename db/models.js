@@ -1,9 +1,13 @@
 const Sequelize = require('sequelize')
 const DataTypes = Sequelize.DataTypes
+const config = require('../config');
 
-const db = new Sequelize( "vacantLanddb", "vacantLandUser", "vacantLandPass", {
-    dialect: 'mysql'
-})
+const db = new Sequelize(config.DATABASE_URL)
+
+
+// const db = new Sequelize( "vacantLanddb", "vacantLandUser", "vacantLandPass", {
+//     dialect: 'mysql'
+// })
 
 const userBase = db.define('user', {
     username: {
