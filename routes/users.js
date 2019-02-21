@@ -22,9 +22,11 @@ route.post('/signin', passport.authenticate('local', {
     failureRedirect: '/users/signin'
 }))
 
-route.get('/test/:id', function(req, res) {
+route.get('/test/:id&:key&:flag', function(req, res) {
 	let x = req.params.id
-	const result = {prerna: x}
+    let key = req.params.key
+    let flag = req.params.flag
+	const result = {prerna: x, my_key: key, flag: flag}
 	res.json(result)
 })
 
