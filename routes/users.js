@@ -26,7 +26,7 @@ route.get('/test/id=:id&key=:key&flag=:flag', function(req, res) {
 	let x = req.params.id
     let key = req.params.key
     let flag = req.params.flag
-	const result = {prerna: x, my_key: key, flag: flag}
+	const result = {prerna: x, my_key: key}
 	res.json(result)
 })
 
