@@ -18,15 +18,16 @@ function recently_added(stateFetched) {
                 ]
             })
                 .then((lands) => {
+                    console.log(lands)
                         recentlyAdded["success"] = true;
                         recentlyAdded["code"] = 200;
                         recentlyAdded["message"] = "Lands for the corressponding state fetched successfully";
                         recentlyAdded["data"] = [];
                         Object.keys(lands).forEach((key) => {
-                            //console.log(key, lands[key]["dataValues"]);
+                            // console.log(key, lands[key]["dataValues"]);
                             recentlyAdded["data"].push(lands[key]["dataValues"]);
                         });
-                        //console.log('***************in recent function*********');
+                        // console.log('***************in recent function*********');
 
                         //console.log(recentlyAdded);
                         resolve(recentlyAdded);
@@ -35,8 +36,6 @@ function recently_added(stateFetched) {
                 ).catch((err) => console.log("Error: No land found"))
         }
     });
-
-
 }
 
 
@@ -83,10 +82,10 @@ async function homePage(stateFetched){
 
 }
 
-route.get('/api/location/lat=:lat&long=:long', (req,res) =>{
+route.post('/api/location', (req,res) =>{
     // console.log(req.query)
-    const latitude = req.params.lat;
-    const longitude = req.params.long;
+    const latitude = req.body.lat;
+    const longitude = req.body.long;
     // console.log(latitude,longitude)
 
     geoUrl = 'http://www.geoplugin.net/extras/location.gp?lat='+latitude+'&long='+longitude+'&format=json';
@@ -100,7 +99,7 @@ route.get('/api/location/lat=:lat&long=:long', (req,res) =>{
         homePage(stateFetched).then((result) => {
             console.log(result);
             res.json(result);
-        });
+        }).catch((err) => console.log("not working"));
 
 
     });

@@ -5,21 +5,7 @@ const session = require('express-session')
 const passport = require('./passport')
 const path = require('path')
 const hbs = require("hbs")
-
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const aws = require('aws-sdk');
-
-aws.config.update({
-    secretAccessKey: config.SECRET_ACCESS_KEY,
-    accessKeyId: config.ACCESS_KEY_ID,
-    region: 'asia pacific (mumbai)'
-});
-
-const s3 = new aws.S3();
-
-
-
+const bodyParser = require('body-parser')
 
 hbs.registerHelper("ifEquals", function(arg1, arg2, options) {
     return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
@@ -27,6 +13,8 @@ hbs.registerHelper("ifEquals", function(arg1, arg2, options) {
 hbs.registerHelper("ifNotEqual", function(arg1, arg2, options) {
     return (arg1 !== arg2) ? options.fn(this) : options.inverse(this);
 });
+
+app.use(bodyParser.urlencoded({extended: true}))
 
 
 app.use(session({
@@ -46,8 +34,10 @@ app.set('view engine', 'hbs')
 
 
 app.use('/users', require('./routes/users'))
-// app.use('/pages', require('./routes/pages'))
+app.use('/pages', require('./routes/pages'))
 app.use('/location', require('./routes/location'))
+app.use('/image-upload', require('./routes/image-upload'))
+
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 // app.listen(2626, () =>
