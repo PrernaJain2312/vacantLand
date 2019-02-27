@@ -7,151 +7,141 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/stylesheetQues.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 </head>
 <body id="homePage">
-    <nav class="navbar fixed-top navbar-expand-lg py-0 navbar-dark bg-dark">
-        <a class="navbar-brand m-0"><span style="color: white">vacantLand</span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02 ">
-            <div class="navbar-nav mt-2 mt-lg-0">
-                <div class="col-lg-12"></div>
-                <div class="col-lg-11"></div>
-                <div class="col-lg-11"></div>
-                <div class="col-lg-1"></div>
-                <div class="nav-item mt-2 col-lg-auto mb-1">
-                        <button class="btn btn-light mb-1" type="submit" onclick="location.href='/pages/home'" style="color: black">Home</button>
-                </div>
-                <div class="nav-item mt-2 col-lg-auto mb-1">
-                    <button class="btn btn-light mb-1" type="submit" onclick="location.href='/users/signin'" style="color: black">Sign Out</button>
-                </div>
+<nav class="navbar fixed-top navbar-expand-lg py-0 navbar-dark bg-dark">
+    <a class="navbar-brand m-0"><span style="color: white">vacantLand</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02 ">
+        <div class="navbar-nav mt-2 mt-lg-0">
+            <div class="col-lg-12"></div>
+            <div class="col-lg-11"></div>
+            <div class="col-lg-11"></div>
+            <div class="col-lg-1"></div>
+            <div class="nav-item mt-2 col-lg-auto mb-1">
+                <button class="btn btn-light mb-1" type="submit" onclick="location.href='/pages/home'"
+                        style="color: black">Home
+                </button>
+            </div>
+            <div class="nav-item mt-2 col-lg-auto mb-1">
+                <button class="btn btn-light mb-1" type="submit" onclick="location.href='/users/signin'"
+                        style="color: black">Sign Out
+                </button>
             </div>
         </div>
-    </nav>
-    <div class="container-fluid" id="addLandContainer">
-            <div id="addLandHeading">
-                 Add Land
-            </div>
-            <div id="Land">
-                <form id="addLandForm" class="form-group container-fluid" action="/pages/addLand" method="post">
-                    <div class="row">
-                        Land Name :
-                        <input class="form-control" name="LandName" type="text">
-                    </div>
-                    <div class="row">
-                        Land State :
-                        <input class="form-control" name="LandState" type="text">
-                    </div>
-                    <div class="row">
-                        Land Area :
-                        <input class="form-control" name="LandArea" type="text">
-                    </div>
-                    <div class="row">
-                        Land Location :
-                        <input class="form-control" name="LandLocation" rows="3" cols="50">
-                        </input>
-                    </div>
-                    <div class="row">
-                        Land Cost :
-                        <input class="form-control" name="LandCost" rows="4" cols="50">
-                        </input>
-                    </div>
-                    <br>
-                    <div class="button">
-                        <input type="submit" class="btn btn-lg btn-primary">
-                    </div>
-                </form>
-                <form action="/image-upload/api/image-upload" enctype="multipart/form-data" method="post">
-                    Land Name :
-                    <select id="landNameforImage">
-                        <option value=""></option>
-                    </select>
-                    <input id="RandomText" type="text">
-                    Select Photo <input type="file" name="photo" multiple>
-                    <button id="submit" type="submit" >Submit</button>
-                </form>
-            </div>
     </div>
+</nav>
+<div class="container-fluid" id="addLandContainer">
+    <div id="addLandHeading">
+        Add Land
+    </div>
+    <div id="Land">
+        <form id="addLandForm" class="form-group container-fluid" action="/pages/addLand" method="post">
+            <div class="row">
+                Land Name :
+                <input class="form-control" name="LandName" type="text">
+            </div>
+            <div class="row">
+                Land State :
+                <input class="form-control" name="LandState" type="text">
+            </div>
+            <div class="row">
+                Land Area :
+                <input class="form-control" name="LandArea" type="text">
+            </div>
+            <div class="row">
+                Land Location :
+                <input class="form-control" name="LandLocation" rows="3" cols="50">
+                </input>
+            </div>
+            <div class="row">
+                Land Cost :
+                <input class="form-control" name="LandCost" rows="4" cols="50">
+                </input>
+            </div>
+            <br>
+            <div class="button">
+                <input type="submit" class="btn btn-lg btn-primary">
+            </div>
+        </form>
+        <form id="applicationForm" action="/image-upload/api/image-upload" enctype="multipart/form-data" method="post">
+            Select Photo <input type="file" name="photo" multiple>
+            Land Name :
+            <select id="landNameforImage">
+                <option value=""></option>
+            </select>
+            <button id="submit" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 
-    <!--<div id="confirmMsg">-->
-    <!--</div>-->
+<div class="container">
+    <div id="confirmMsg" class="row">
+
+        <div class="col-md-6">
+            <img src="" id="confirmImage" alt="" class="img-rounded" style="max-height: 800px;max-width: 600px;">
+        </div>
+    </div>
+</div>
+
 </body>
 
 <script>
-    $(document).ready(function() {
-        $.ajax({url: "http://localhost:4000/image-upload/imageland",
-                type: "GET",
-                'cache': false,
-                "headers": {
-                    "accept": "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                },
-                success: function(result) {
-                    // console.log(result);
-                    $("#landNameforImage").empty();
-                    $.each(result, function(i, p){
-                        // console.log(result[i])
-                        $.each(result[i], function(key, val) {
-                            console.log(val.Name);
-                            $('#landNameforImage').append($('<option></option>').val(val.id).html(val.Name));
-                        })
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://localhost:4000/image-upload/imageland",
+            type: "GET",
+            'cache': false,
+            "headers": {
+                "accept": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+            success: function (result) {
+                // console.log(result);
+                $("#landNameforImage").empty();
+                $.each(result, function (i, p) {
+                    // console.log(result[i])
+                    $.each(result[i], function (key, val) {
+                        console.log(val.Name);
+                        $('#landNameforImage').append($('<option></option>').val(val.id).html(val.Name));
+                    })
 
-                    });
-            }});
+                });
+            }
+        });
 
 
         $("#submit").click((event) => {
             event.preventDefault();
-            doAjax1();
+            $("#confirmImage").attr("src", "https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif");
+            doAjax();
         });
 
 
-        function doAjax1() {
-            var form = $("#RandomText").val();
-            var formdata = {};
-            formdata["data"] = "Sanket";
-            $.post({
-                type: "POST",
-                url: "/image-upload/api/testUpload",
-                data: {id: 2, age: 78},
-                processData: false, //prevent jQuery from automatically transforming the data into a query string
-                cache: false,
-                success: (data) => {
-                    $("#confirmMsg").text(data);
-                    console.log(formdata);
-                    //reset form
-
-                },
-                error: (e) => {
-                    $("#confirmMsg").text(e.responseText);
-                }
-            })
-        }
-
         function doAjax() {
-            var form = $("#RandomText").val();
+            var form = $('#applicationForm')[0];
+            var landID = $("#landNameforImage").find(":selected")[0].value;
             var formdata = new FormData(form);
-            formdata["data"] = {name: "Sanket"};
+            formdata.append("land_id", landID);
             $.ajax({
                 type: "POST",
-                enctype: 'multipart/form-data',
                 url: "/image-upload/api/image-upload",
+                enctype: 'multipart/form-data',
                 data: formdata,
-                processData: false, //prevent jQuery from automatically transforming the data into a query string
                 contentType: false,
-                cache: false,
-                success: (data) => {
-                    $("#confirmMsg").text(data);
-                    console.log(formdata);
-                    //reset form
-
-                },
-                error: (e) => {
-                    $("#confirmMsg").text(e.responseText);
+                processData: false,
+                method: "POST",
+                success: function (data) {
+                    $("#confirmImage").attr("src", data);
+                    console.log(data);
                 }
             })
         }
