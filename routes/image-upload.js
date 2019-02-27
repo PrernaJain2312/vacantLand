@@ -68,33 +68,22 @@ router.get('/imageland', (req,res)=>{
 
 });
 
-router.post('/api/image-upload',upload.array('photo',3), function(req, res, next) {
+router.post('/api/image-upload', upload.array('photo',3), function(req, res, next) {
     // console.log(req.files);
-    console.log(req)
+    console.log(req.body);
     const imageUrl = [];
     Object.keys(req.files).forEach((key) => {
         //console.log(key, req.files[key].location);
         imageUrl.push(req.files[key].location);
     });
     imageBank.create({
-        imageUrl: imageUrl
-    })
+        imageUrl: imageUrl,
+        landId: req.body["land_id"]
+    });
+    console.log(imageUrl);
     res.json(imageUrl)
 });
 
-router.post('/api/testUpload', function(req, res, next) {
-    // console.log(req.files);
-    console.log(req.body)
-    // const imageUrl = [];
-    // Object.keys(req.files).forEach((key) => {
-    //     //console.log(key, req.files[key].location);
-    //     imageUrl.push(req.files[key].location);
-    // });
-    // imageBank.create({
-    //     imageUrl: imageUrl
-    // })
-    res.json({success: true});
-});
 
 
 module.exports = router;
