@@ -58,6 +58,3 @@ typings/
 .env
 
 .idea/
-
-public/css
-public/js
