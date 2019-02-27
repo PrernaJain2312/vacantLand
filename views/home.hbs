@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AIRCONNECT</title>
+    <title>vacantLand</title>
 
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/stylesheetQues.css">
@@ -16,7 +16,7 @@
 
 <body>
     <nav class="navbar fixed-top navbar-expand-lg py-0 navbar-dark bg-dark">
-        <a class="navbar-brand m-0"><span style="color: white">AIRCONNECT</span></a>
+        <a class="navbar-brand m-0"><span style="color: white">vacantLand</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +37,7 @@
                         Welcome, {{user.username}}
                     </div>
                     <div class="nav-item mt-2 col-lg-auto mb-1">
-                        <button class="btn btn-light mb-1" type="submit" onclick="location.href='/pages/addFlight'" style="color: black">Add Flight</button>
+                        <button class="btn btn-light mb-1" type="submit" onclick="location.href='/pages/addland'" style="color: black">Add Land</button>
                     </div>
                 {{/ifEquals}}
                 <div class="nav-item mt-2 col-lg-auto mb-1" style=" padding-left: 0px">
@@ -48,30 +48,30 @@
     </nav>
     <div id="homePage">
         <div id="searchFlight">
-            <div class="h1">Search for a Flight</div>
+            <div class="h1">Search for a Land</div>
             <form class="form-inline">
                 <input class="form-control col-md-5" type="search" placeholder="Enter Flight Number" name="SearchFlight">
                 <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-        {{#if flights}}
+        {{#if lands}}
             <div id='bar-contain'>
-                <div id='flight-section' class="flight-number title col-lg-4">Flight#</br>
-                    <span class="tracker-font">{{flights.FlightNumber}}</span>
+                <div id='flight-section' class="flight-number title col-lg-4">Land#</br>
+                    <span class="tracker-font">{{lands.Name}}</span>
                 </div>
-                <div id='flight-section' class="flight-number title time-remaining col-lg-4">Flight Duration</br>
+                <div id='flight-section' class="flight-number title time-remaining col-lg-4">Land Area</br>
                     <span class="tracker-font">
-                        <span class="tracker-font-highlight">{{flights.FlightDuration}}</span>
+                        <span class="tracker-font-highlight">{{lands.Area}}</span>
                     </span>
                 </div>
-                <div id='flight-section' class="title">Origin</br>
-                    <span class="tracker-font">{{flights.FlightSource}}</span>
+                <div id='flight-section' class="title">Cost</br>
+                    <span class="tracker-font">{{lands.Cost}}</span>
                 </div>
                 <div id='flight-path-before'></div>
                 <a href="#"> <img id="plane" src="http://stellar-road.com/wp-content/uploads/2018/01/plane.svg"></a>
                 <div id='flight-path-remaining'></div>
-                <div id='flight-section' class="title align-right flight-number">Destination</br>
-                    <span class="tracker-font-highlight align-right">{{flights.FlightDestination}}</span>
+                <div id='flight-section' class="title align-right flight-number">Location</br>
+                    <span class="tracker-font-highlight align-right">{{lands.Location}}</span>
                 </div>
             </div>
         {{/if}}

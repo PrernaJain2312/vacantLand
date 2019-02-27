@@ -4,7 +4,6 @@ const request = require('request');
 
 
 function recently_added(stateFetched) {
-
     return new Promise((resolve, reject) => {
         let recentlyAdded = {};
         if (stateFetched) {
@@ -27,8 +26,6 @@ function recently_added(stateFetched) {
                             // console.log(key, lands[key]["dataValues"]);
                             recentlyAdded["data"].push(lands[key]["dataValues"]);
                         });
-                        // console.log('***************in recent function*********');
-
                         //console.log(recentlyAdded);
                         resolve(recentlyAdded);
 
@@ -56,7 +53,6 @@ function current_location(stateFetched) {
                     //console.log(key, lands[key]["dataValues"]);
                     currentLocation["data"].push(lands[key]["dataValues"]);
                 });
-                //console.log('***************in current function*********');
                 //console.log(currentLocation);
                 resolve (currentLocation);
             })
@@ -67,23 +63,32 @@ function current_location(stateFetched) {
 
 
 async function homePage(stateFetched){
-    //console.log('***************in home page function*********');
     const recentlyAdded = await recently_added(stateFetched);
-    //console.log("Recently added done !!!!!")
     //console.log(recentlyAdded);
     const currentLocation = await current_location(stateFetched);
-    // console.log("Current location done !!!");
     // console.log(currentLocation);
     let response = {};
     response["RecentlyAdded"] = recentlyAdded;
     response["CurrentLocation"] = currentLocation;
     //console.log(response);
     return response;
-
 }
 
+
+async function statePage(stateFetched){
+    const recentlyAdded = await recently_added(stateFetched);
+    //console.log(recentlyAdded);
+    const currentLocation = await current_location(stateFetched);
+    // console.log(currentLocation);
+    let response = {};
+    response["RecentlyAdded"] = recentlyAdded;
+    response["CurrentLocation"] = currentLocation;
+    //console.log(response);
+    return response;
+}
+
+
 route.post('/api/location', (req,res) =>{
-    // console.log(req.query)
     const latitude = req.body.lat;
     const longitude = req.body.long;
     // console.log(latitude,longitude)
@@ -93,19 +98,22 @@ route.post('/api/location', (req,res) =>{
         // console.log(body);
         // console.log(JSON.parse(body)["geoplugin_region"]);
         const stateFetched = JSON.parse(body)["geoplugin_region"];
-
         // current_location(stateFetched);
-        //recently_added(stateFetched);
         homePage(stateFetched).then((result) => {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         }).catch((err) => console.log("not working"));
-
-
     });
+});
 
-    //res.redirect('/pages/home');
 
+route.post('/api/state', (req,res) =>{
+    const stateFetched = req.body.state;
+    //console.log(stateFetched)
+    statePage(stateFetched).then((result) => {
+        //console.log(result);
+        res.json(result);
+    }).catch((err) => console.log("not working"));
 });
 
 exports = module.exports = route;

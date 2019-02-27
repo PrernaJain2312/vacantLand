@@ -44,14 +44,34 @@ const landBank = db.define('land', {
     },
     Image: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull:true,
+        defaultValue:"false"
     }
 })
+
+const imageBank = db.define('image', {
+    imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        get() {
+            return this.getDataValue('imageUrl').split(',')
+        },
+        set(val) {
+            this.setDataValue('imageUrl',val.join(','));
+        },
+    }
+})
+
+imageBank.belongsTo(landBank)
+
+landBank.hasMany(imageBank)
+
 
 db.sync().then(() => "Database created");
 
 exports = module.exports = {
     db,
     userBase,
-    landBank
+    landBank,
+    imageBank
 }
