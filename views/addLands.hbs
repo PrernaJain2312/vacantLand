@@ -78,6 +78,7 @@
             <select id="landNameforImage">
                 <option value=""></option>
             </select>
+            <input type="checkbox" value="1" id="isCover"><label for="isCover">Is Cover</label>
             <button id="submit" type="submit">Submit</button>
         </form>
     </div>
@@ -129,8 +130,10 @@
         function doAjax() {
             var form = $('#applicationForm')[0];
             var landID = $("#landNameforImage").find(":selected")[0].value;
+            var isCover = $("#isCover").is(':checked');
             var formdata = new FormData(form);
             formdata.append("land_id", landID);
+            formdata.append("is_cover", isCover);
             $.ajax({
                 type: "POST",
                 url: "/image-upload/api/image-upload",
