@@ -36,6 +36,7 @@ app.set('view engine', 'hbs')
 app.use('/users', require('./routes/users'))
 app.use('/pages', require('./routes/pages'))
 app.use('/location', require('./routes/location'))
+app.use('/tile', require('./routes/tile'))
 app.use('/image-upload', require('./routes/image-upload'))
 
 app.use('/', express.static(path.join(__dirname, 'public')))
@@ -44,3 +45,5 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 //     console.log("Server started on http://localhost:2626"))
 
 app.listen(config.PORT, () => console.log("Server listening to "+ config.PORT))
+
+
