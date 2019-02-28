@@ -60,7 +60,7 @@ function land_name() {
     })
 }
 
-router.get('/imageland', (req,res)=>{
+router.get('/imageland', (req, res) => {
     land_name().then((result) => {
         console.log(result);
         res.json(result);
@@ -68,7 +68,7 @@ router.get('/imageland', (req,res)=>{
 
 });
 
-router.post('/api/image-upload', upload.array('photo',3), function(req, res, next) {
+router.post('/api/image-upload', upload.array('photo', 3), function (req, res, next) {
     // console.log(req.files);
     console.log(req.body);
     const imageUrl = [];
@@ -80,10 +80,14 @@ router.post('/api/image-upload', upload.array('photo',3), function(req, res, nex
         imageUrl: imageUrl,
         landId: req.body["land_id"]
     });
+    if (req.body["is_cover"] === "true") {
+        landBank.update({Image: imageUrl[0]}, {where: {id: req.body["land_id"]}}).then((result) => {
+            console.log("Success");
+        }).catch(err => console.log(err));
+    }
     console.log(imageUrl);
     res.json(imageUrl)
 });
-
 
 
 module.exports = router;
