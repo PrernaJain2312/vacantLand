@@ -78,6 +78,7 @@
             <select id="landNameforImage">
                 <option value=""></option>
             </select>
+            <input type="radio" id="cover">
             <button id="submit" type="submit">Submit</button>
         </form>
     </div>
@@ -129,8 +130,11 @@
         function doAjax() {
             var form = $('#applicationForm')[0];
             var landID = $("#landNameforImage").find(":selected")[0].value;
+            var coverImage = $('#cover').val()
             var formdata = new FormData(form);
+            console.log(coverImage)
             formdata.append("land_id", landID);
+           // formdata.append("coverImage", coverImage);
             $.ajax({
                 type: "POST",
                 url: "/image-upload/api/image-upload",
