@@ -147,7 +147,7 @@ async function getLand(id) {
     }
     response["data"] = [];
     response["data"].push(result);
-    // console.log("This is response", response);
+    //console.log("This is response", response);
     return response;
 }
 
