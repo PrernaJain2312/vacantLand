@@ -146,12 +146,12 @@ async function getLand(id) {
         result["image_list"].push(y[i]["dataValues"]["imageUrl"]);
     }
     response["data"] = result;
-    console.log("This is response", response);
+    // console.log("This is response", response);
     return response;
 }
 
 router.get('/api/getLand/:id', (req, res, next) => {
-    console.log(req.params);
+    // console.log(req.params);
     var response = {};
     let land_id = req.params["id"];
     if (typeof(land_id) === "string") {
