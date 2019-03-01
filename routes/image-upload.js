@@ -60,6 +60,7 @@ function land_name() {
     })
 }
 
+
 router.get('/imageland', (req, res) => {
     land_name().then((result) => {
         console.log(result);
@@ -87,6 +88,104 @@ router.post('/api/image-upload', upload.array('photo', 3), function (req, res, n
     }
     console.log(imageUrl);
     res.json(imageUrl)
+});
+
+function isNum(n) {
+    return parseInt(n) === n;
+}
+
+function getLandData(id) {
+    return new Promise((resolve, reject) => {
+        let response = {};
+        landBank.findAll({where: {id: id}}).then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            console.log("err", err);
+            response["success"] = false;
+            response["code"] = 500;
+            response["message"] = "Internal Server Error Broo!!!";
+            response["data"] = [];
+            console.log(response);
+            reject(response);
+        });
+    });
+}
+
+function getLandImage(id) {
+    return new Promise((resolve, reject) => {
+        let response = {};
+        imageBank.findAll({where: {landId: id}}).then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            console.log("err", err);
+            response["success"] = false;
+            response["code"] = 500;
+            response["message"] = "Internal Server Error Broo!!!";
+            response["data"] = [];
+            console.log(response);
+            reject(response);
+        })
+    });
+}
+
+async function getLand(id) {
+    let response = {};
+    let x = await getLandData(id);
+    let y = await imageBank.findAll({where: {landId: id}});
+
+    // console.log(x[0]["dataValues"]);
+    console.log(y[1]["dataValues"]);
+    response["success"] = true;
+    response["code"] = 200;
+    response["message"] = "Found the corresponding land!";
+
+    let result = x[0]["dataValues"];
+    result["image_list"] = [];
+    for(let i=0;i<y.length;i++) {
+        result["image_list"].push(y[i]["dataValues"]["imageUrl"]);
+    }
+    response["data"] = result;
+    return response;
+}
+
+router.get('/api/getLand/:id', (req, res, next) => {
+    console.log(req.params);
+    var response = {};
+    let land_id = req.params["id"];
+    if (typeof(land_id) === "string") {
+        let isnum = /^\d+$/.test(land_id);
+        if (isnum !== true) {
+            response["success"] = false;
+            response["code"] = 400;
+            response["message"] = "Invalid Land ID";
+            response["data"] = [];
+            res.json(response);
+        } else {
+            land_id = parseInt(land_id);
+        }
+    } else if (!isNum(land_id)) {
+        response["success"] = false;
+        response["code"] = 400;
+        response["message"] = "Invalid Land ID";
+        response["data"] = [];
+        res.json(response);
+    } else {
+        // Already a valid id
+    }
+    getLand(land_id).then((result)=> {
+        console.log("Inside success");
+        res.json(result);
+    }).catch((err)=> {
+        console.log("Inside");
+        console.log(err);
+        response["success"] = false;
+        response["code"] = 404;
+        response["message"] = "Land Not Found";
+        response["data"] = [];
+        res.json(response);
+    });
+    // landBank.findAll({where: {id: req.params["id"]}}).then(result => console.log(result[0]["dataValues"]));
+
 });
 
 
