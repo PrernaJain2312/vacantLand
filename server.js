@@ -37,6 +37,7 @@ app.use('/users', require('./routes/users'))
 app.use('/pages', require('./routes/pages'))
 app.use('/location', require('./routes/location'))
 app.use('/tile', require('./routes/tile'))
+app.use('/filter', require('./routes/filter'))
 app.use('/image-upload', require('./routes/image-upload'))
 
 app.use('/', express.static(path.join(__dirname, 'public')))
