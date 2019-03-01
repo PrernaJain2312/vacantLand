@@ -43,7 +43,7 @@ route.delete('/home/:id', (req, res) => {
 
 route.get('/addLand', (req, res) => {
     if (req.user.username === 'admin1') {
-        return res.render('addlands')
+        return res.render('addLands')
     }
     res.redirect('/pages/home')
 })
