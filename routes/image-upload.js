@@ -130,12 +130,12 @@ function getLandImage(id) {
 
 async function getLand(id) {
     let response = {};
-    console.log(id);
+    // console.log(id);
     let x = await getLandData(id);
     let y = await imageBank.findAll({where: {landId: id}});
 
-    console.log(x);
-    console.log(y);
+    // console.log(x);
+    // console.log(y);
     response["success"] = true;
     response["code"] = 200;
     response["message"] = "Found the corresponding land!";
