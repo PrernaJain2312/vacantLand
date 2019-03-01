@@ -145,6 +145,7 @@ async function getLand(id) {
         result["image_list"].push(y[i]["dataValues"]["imageUrl"]);
     }
     response["data"] = result;
+    console.log("This is response", response);
     return response;
 }
 
