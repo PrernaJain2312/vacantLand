@@ -3,32 +3,8 @@ const landBank = require('../db/models').landBank
 const imageBank = require('../db/models').imageBank
 
 route.get('/home', (req, res) => {
-    //var flight = [];
-    //var a;
     if (req.user) {
-        landBank.findOne({
-            where:{
-                State: req.query.SearchFlight
-            }
-        })
-            .then((lands) => {
-                /*flight = flights
-                console.log("done")
-                if (flight!== null) {
-                    console.log("************************************")
-                    console.log("in if")
-                    console.log(flight["dataValues"])
-                   console.log("************************************")
-                    a = flight["dataValues"]
-                    return res.status(200).render('home',{ user: req.user, flights: a})
-                }
-                else {*/
-                    return res.status(200).render('home', {user: req.user, lands: lands})
-            });
-         console.log("************************************")
-         //
-        //
-        // console.log(flight)
+        return res.status(200).render('home', {user: req.user})
     } else
         res.redirect('/users/signin')
 })

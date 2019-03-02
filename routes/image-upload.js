@@ -142,10 +142,11 @@ async function getLand(id) {
 
     let result = x[0]["dataValues"];
     result["image_list"] = [];
-    for(let i=0;i<y.length;i++) {
+    let str ="";
+    for(let i=1;i<y.length;i++) {
         const url = y[i]["dataValues"]["imageUrl"];
         const finalUrl = url.split(",");
-        result["image_list"].push(finalUrl);
+        result["image_list"]=finalUrl;
     }
     console.log(result["image_list"]);
     response["data"] = [];
