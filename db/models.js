@@ -31,7 +31,7 @@ const landBank = db.define('land', {
         allowNull: false
     },
     Area: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     Location: {
